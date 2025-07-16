@@ -14,6 +14,11 @@ farelmusyaffa@htb[/htb]$ echo ${PATH:0:1}
 /
 ```
 Use `printenv` command to print all environment variables
+```
+farelmusyaffa@htb[/htb]$ echo ${LS_COLORS:10:1}
+
+;
+```
 ## Windows
 CMD
 ```
