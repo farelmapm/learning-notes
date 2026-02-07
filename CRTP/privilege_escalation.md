@@ -14,6 +14,33 @@
 - `Get-ModifiableService -Verbose` -> Get the services whose configuration current user can modify
 - `Get-WmiObject -Class win32_service | select pathname`
 
+## Find Local Admin Access
+`. C:\AD\Tools\Find-PSRemotingLocalAdminAccess.ps1`
+Run `Find-PSRemotingLocalAdminAccess`
+```
+Find-PSRemotingLocalAdminAccess
+dcorp-std214
+dcorp-adminsrv
+```
+
+Use winrs to connect to dcorp-adminsrv
+```
+winrs -r:dcorp-adminsrv cmd
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Users\studentx> set username
+set username
+USERNAME=studentx
+
+C:\Users\studentx>set computername
+computername
+COMPUTERNAME=dcorp-adminsrv
+```
+or to connect with PowerShell remote:
+`Enter-PSSession -ComputerName dcorp-adminsrv.dollarcorp.moneycorp.local`
+`$env:username`
+
 ### Vulnerabilities
 
 <img src="/home/farel/Documents/Personal Projects/Learning Notes/CRTP/resources/vuln-service.png">
@@ -26,6 +53,8 @@
 
 ### Jenkins
 Running on <b>dcorp-ci</b> (172.16.3.11) on port 8080 in the lab
+
+Many jenkins user have their username as their password.
 
 Running commands on Jenkins Master:
 - `http://<jenkins_server>/script`

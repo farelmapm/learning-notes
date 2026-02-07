@@ -122,6 +122,7 @@ The example above shows a SACL.
 
 #### Domain Enumeration - ACL
 - `Get-DomainObjectAcl -SamAccountName student1 -ResolveGUIDs` -> Get the ACLs associated with the specified object
+- `Get-DomainObjectAcl -Identity "Domain Admins" -ResolveGUIDs` -> Get ACLs for a certain group
 - `Get-DomainObjectAcl -SearchBase "LDAP://CN=Domain Admins,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local" -ResolveGUIDs -Verbose` -> Get the ACLs associated with the specified prefix to be used for search
 - `(Get-Acl 'AD:\CN=Administrator,CN=Users,DC=dollarcorp,DC=moneycorp,DC=local').Access` -> Enumerate ACLs using ActiveDirectory module without resolving GUIDs
 - `Find-InterestingDomainAcl -ResolveGUIDs` -> Search for interesting ACEs
@@ -145,7 +146,7 @@ Organizations use OU for delegating administration. An OU is the lowest-level AD
 - `Get-DomainGPOUserLocalGroupMapping -Identity student1 -Verbose` -> Get machines where the given user is member of a specific groups
 - `Get-DomainOU`
 - `Get-DomainOU | select -ExpandProperty name`
-- `(Get-DomainOU -Identity DevOpss).distinguishedname | %{Get-DomainComputer -SearchBase $_} | select name`
+- `(Get-DomainOU -Identity DevOps).distinguishedname | %{Get-DomainComputer -SearchBase $_} | select name` -> Get computers in the DevOps OU 
 - `Get-ADOrganizationalUnit -Filter * -Properties *` -> Get OUs in a domain
 - `Get-DomainGPO -Identity "{0D1CC23D-1F20-4EEE-AF64-D99597AE2A6E}"` -> Get GPO applied on an OU. Read GPOname from gplink attribute from Get-NetOU
 
